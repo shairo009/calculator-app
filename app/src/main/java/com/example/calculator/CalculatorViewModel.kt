@@ -73,13 +73,12 @@ class CalculatorViewModel : ViewModel() {
             Operator.ADD -> prev + currentValue
             Operator.SUBTRACT -> prev - currentValue
             Operator.MULTIPLY -> prev * currentValue
-currentValue
             Operator.DIVIDE -> if (currentValue != 0.0) prev / currentValue else Double.NaN
         }
 
         currentInput = if (result.isNaN()) {
             "Error"
-        } else if (result == result.toLong()) {
+        } else if (result == result.toLong().toDouble()) {
             result.toLong().toString()
         } else {
             result.toString()
