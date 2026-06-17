@@ -39,10 +39,6 @@ android {
         jvmTarget = "17"
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.11"
-    }
-
     buildFeatures {
         compose = true
         viewBinding = true
