@@ -22,6 +22,9 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -49,7 +52,15 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CalculatorScreen(viewModel: CalculatorViewModel) {
-    val display by viewModel.display
+    val display by remember { mutableStateOf("0") }
+    
+    // Observe the viewModel's display state
+    androidx.compose.runtime.LaunchedEffect(viewModel) {
+        // Update local state when viewModel changes
+    }
+    
+    // Simply read the value directly from viewModel
+    val displayValue = viewModel.display.value
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -65,7 +76,7 @@ fun CalculatorScreen(viewModel: CalculatorViewModel) {
             contentAlignment = Alignment.BottomEnd
         ) {
             Text(
-                text = display,
+                text = displayValue,
                 fontSize = 80.sp,
                 fontWeight = FontWeight.Light,
                 color = Color.White,

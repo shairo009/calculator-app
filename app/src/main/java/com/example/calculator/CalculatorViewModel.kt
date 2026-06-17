@@ -1,12 +1,16 @@
 package com.example.calculator
 
 import androidx.lifecycle.ViewModel
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 class CalculatorViewModel : ViewModel() {
 
-    val display: MutableState<String> = mutableStateOf("0")
+    private var _display = mutableStateOf("0")
+    val display: String
+        @Suppress("UNUSED_GETTER")
+        get() = _display.value
 
     private var currentInput = ""
     private var previousValue: Double? = null
@@ -30,7 +34,7 @@ class CalculatorViewModel : ViewModel() {
                 currentInput += number
             }
         }
-        display.value = currentInput
+        _display.value = currentInput
     }
 
     fun onOperatorClick(operator: Operator) {
@@ -57,7 +61,7 @@ class CalculatorViewModel : ViewModel() {
         previousValue = null
         pendingOperator = null
         shouldResetDisplay = false
-        display.value = "0"
+        _display.value = "0"
     }
 
     private fun calculateResult() {
@@ -79,7 +83,7 @@ class CalculatorViewModel : ViewModel() {
         } else {
             result.toString()
         }
-        display.value = currentInput
+        _display.value = currentInput
         previousValue = result
     }
 }
