@@ -194,7 +194,7 @@ fun CalculatorButton(
             containerColor = backgroundColor,
             contentColor = textColor
         ),
-        shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(16.dp)
     ) {
         Text(
             text = text,
